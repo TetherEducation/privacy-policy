@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Backoffice Assistant – Privacy Policy</title>
+        <style>
+            body {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    sans-serif;
+                max-width: 720px;
+                margin: 2rem auto;
+                padding: 0 1rem;
+                line-height: 1.6;
+                color: #0f172a;
+            }
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 0.25rem;
+            }
+            h2 {
+                margin-top: 2rem;
+                font-size: 1.2rem;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 1rem;
+            }
+            th,
+            td {
+                border: 1px solid #e2e8f0;
+                padding: 0.5rem;
+                text-align: left;
+            }
+            th {
+                background: #f8fafc;
+            }
+            code {
+                font-family: "JetBrains Mono", "Fira Code", monospace;
+                background: #f1f5f9;
+                padding: 0.1rem 0.25rem;
+                border-radius: 4px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Backoffice Assistant – Privacy Policy</h1>
+        <p><strong>Last updated:</strong> 11 Nov 2025</p>
+        <p>
+            Backoffice Assistant is an internal Chrome extension built by Tether
+            Education to help the CRM team manage integrations with educational
+            services. The extension is designed for authenticated institutional
+            users only. This document explains what data we access, how we use
+            it, and the safeguards in place.
+        </p>
+
+        <h2>1. Data We Process</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Examples</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Authentication tokens</td>
+                    <td>
+                        OAuth access tokens, refresh tokens issued by Keycloak
+                    </td>
+                    <td>
+                        Maintain an authenticated session with Tether services
+                    </td>
+                </tr>
+                <tr>
+                    <td>Educational service credentials</td>
+                    <td>
+                        JWT tokens, session cookies, institution identifiers
+                        (RBD codes)
+                    </td>
+                    <td>
+                        Automate integrations and provision tokens to the
+                        correct campus
+                    </td>
+                </tr>
+                <tr>
+                    <td>Basic user profile</td>
+                    <td>Name, corporate email, campus assignments</td>
+                    <td>Display account status inside the extension UI</td>
+                </tr>
+                <tr>
+                    <td>Technical metadata</td>
+                    <td>
+                        Browser version, extension version, timestamps,
+                        success/error logs
+                    </td>
+                    <td>Troubleshooting, rate limiting, and audit logs</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            The extension <strong>does not</strong> collect browsing history,
+            unrelated form inputs, financial information, or student personal
+            data.
+        </p>
+
+        <h2>2. How We Use The Data</h2>
+        <ol>
+            <li>
+                <strong>Automated integrations</strong> – captured tokens are
+                sent to the Credential Manager and Integration Core
+                microservices hosted by Tether Education.
+            </li>
+            <li>
+                <strong>Credential management</strong> – tokens are encrypted
+                locally (AES-256-GCM) and persisted only for the minimum time
+                required to deliver them to the CRM.
+            </li>
+            <li>
+                <strong>Operational analytics</strong> – aggregate events
+                (success, failure, timestamps) are logged to monitor service
+                reliability. No advertising or profiling is performed.
+            </li>
+        </ol>
+
+        <h2>3. Data Storage & Retention</h2>
+        <ul>
+            <li>
+                Tokens and credentials are kept in encrypted extension storage
+                (<code>chrome.storage.local</code>) and cleared immediately
+                after they are acknowledged by the backend.
+            </li>
+            <li>
+                Server-side services retain encrypted copies following Tether’s
+                retention policy (maximum 90 days) for auditability.
+            </li>
+            <li>No data leaves Tether-controlled infrastructure.</li>
+        </ul>
+
+        <h2>4. Sharing With Third Parties</h2>
+        <p>
+            We do not sell, rent, or share user data with third parties. Data is
+            transmitted exclusively to:
+        </p>
+        <ul>
+            <li>
+                <code>https://api.v2.tether.education/*</code> (Credential
+                Manager & Integration Core)
+            </li>
+            <li>
+                <code>https://auth.tether.education/*</code> and
+                <code>https://auth.dev.tether.education/*</code> (Keycloak
+                Identity)
+            </li>
+            <li>
+                <code>https://app.tether.education/*</code> (Backoffice web
+                application)
+            </li>
+        </ul>
+        <p>All traffic is transmitted over HTTPS with TLS 1.2+.</p>
+
+        <h2>5. User Controls</h2>
+        <ul>
+            <li>
+                Users must authenticate with their corporate Google Workspace
+                account through Keycloak.
+            </li>
+            <li>
+                Tokens can be revoked at any time inside the Backoffice
+                Assistant popup (Logout button).
+            </li>
+            <li>
+                Removing the extension from Chrome deletes all locally stored
+                data.
+            </li>
+        </ul>
+
+        <h2>6. Contact</h2>
+        <p>
+            Questions about this policy can be sent to
+            <a href="mailto:contacto@tether.education"
+                >contacto@tether.education</a
+            >. Provide the extension version and the review identifier if the
+            request comes from a Chrome Web Store reviewer.
+        </p>
+        <p>
+            This policy will be updated whenever we introduce new data flows,
+            permissions, or integrations.
+        </p>
+    </body>
+</html>
