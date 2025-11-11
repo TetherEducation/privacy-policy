@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Privacy Policy - Campus Assistant Extension</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    "Helvetica Neue", Arial, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                background-color: #f5f5f5;
+                padding: 20px;
+            }
+
+            .container {
+                max-width: 900px;
+                margin: 0 auto;
+                background-color: #fff;
+                padding: 40px;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            h1 {
+                color: #1a1a1a;
+                font-size: 2.5em;
+                margin-bottom: 0.5em;
+                border-bottom: 3px solid #4caf50;
+                padding-bottom: 10px;
+            }
+
+            h2 {
+                color: #2c2c2c;
+                font-size: 1.8em;
+                margin-top: 1.5em;
+                margin-bottom: 0.5em;
+                border-left: 4px solid #4caf50;
+                padding-left: 15px;
+            }
+
+            h3 {
+                color: #3c3c3c;
+                font-size: 1.3em;
+                margin-top: 1.2em;
+                margin-bottom: 0.5em;
+            }
+
+            p {
+                margin-bottom: 1em;
+                text-align: justify;
+            }
+
+            .metadata {
+                background-color: #f9f9f9;
+                border-left: 4px solid #2196f3;
+                padding: 15px 20px;
+                margin-bottom: 30px;
+                border-radius: 4px;
+            }
+
+            .metadata p {
+                margin-bottom: 0.3em;
+                font-size: 0.95em;
+                color: #555;
+            }
+
+            .metadata strong {
+                color: #2196f3;
+            }
+
+            .important-note {
+                background-color: #fff3cd;
+                border-left: 4px solid #ffc107;
+                padding: 15px 20px;
+                margin: 20px 0;
+                border-radius: 4px;
+            }
+
+            .important-note strong {
+                color: #856404;
+            }
+
+            ul,
+            ol {
+                margin-left: 20px;
+                margin-bottom: 1em;
+            }
+
+            li {
+                margin-bottom: 0.5em;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                font-size: 0.95em;
+            }
+
+            table thead {
+                background-color: #4caf50;
+                color: white;
+            }
+
+            table th,
+            table td {
+                padding: 12px 15px;
+                text-align: left;
+                border: 1px solid #ddd;
+            }
+
+            table tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            table tbody tr:hover {
+                background-color: #f1f1f1;
+            }
+
+            .cross-mark {
+                color: #f44336;
+                font-weight: bold;
+            }
+
+            .check-mark {
+                color: #4caf50;
+                font-weight: bold;
+            }
+
+            .contact-info {
+                background-color: #e3f2fd;
+                border-left: 4px solid #2196f3;
+                padding: 20px;
+                margin: 30px 0;
+                border-radius: 4px;
+            }
+
+            .contact-info p {
+                margin-bottom: 0.5em;
+                font-size: 1.05em;
+            }
+
+            .footer {
+                margin-top: 40px;
+                padding-top: 20px;
+                border-top: 2px solid #ddd;
+                text-align: center;
+                color: #777;
+                font-size: 0.9em;
+            }
+
+            @media (max-width: 768px) {
+                .container {
+                    padding: 20px;
+                }
+
+                h1 {
+                    font-size: 2em;
+                }
+
+                h2 {
+                    font-size: 1.5em;
+                }
+
+                table {
+                    font-size: 0.85em;
+                }
+
+                table th,
+                table td {
+                    padding: 8px 10px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Privacy Policy - Campus Assistant Extension</h1>
+
+            <div class="metadata">
+                <p><strong>Last Updated:</strong> January 11, 2025</p>
+                <p><strong>Version:</strong> 1.0.0</p>
+            </div>
+
+            <h2>Overview</h2>
+            <p>
+                Campus Assistant is an
+                <strong>internal browser extension</strong> developed by Tether
+                Education for the CRM team. This extension is designed to
+                facilitate secure integration between educational services and
+                Tether's internal CRM platform.
+            </p>
+
+            <div class="important-note">
+                <p>
+                    <strong>Important:</strong> This is an
+                    <strong>internal tool</strong> for authorized Tether
+                    Education employees only. It is not intended for public use
+                    and is only available in the Chrome Web Store for
+                    distribution purposes.
+                </p>
+            </div>
+
+            <h2>Purpose</h2>
+            <p>
+                Campus Assistant automates the following workflows for
+                authorized CRM team members:
+            </p>
+            <ul>
+                <li>
+                    <strong>Token Capture</strong>: Securely captures
+                    authentication tokens (JWT) from educational service
+                    providers (e.g., RPD MINEDUC, SIGES, EduFácil)
+                </li>
+                <li>
+                    <strong>Credential Management</strong>: Manages credentials
+                    for educational platforms
+                </li>
+                <li>
+                    <strong>Bidirectional Communication</strong>: Facilitates
+                    secure messaging between the extension and Tether's Campus
+                    Integration web application
+                </li>
+                <li>
+                    <strong>Bulk Provisioning</strong>: Enables provisioning of
+                    captured tokens across multiple campuses
+                </li>
+            </ul>
+
+            <h2>Data Collection</h2>
+
+            <h3>What Data We Collect</h3>
+            <p>
+                The extension collects and processes the following data types:
+            </p>
+
+            <ol>
+                <li>
+                    <strong>Authentication Tokens (JWT)</strong>
+                    <ul>
+                        <li>
+                            <strong>Purpose:</strong> Captured from educational
+                            services to enable automated integrations
+                        </li>
+                        <li>
+                            <strong>Storage:</strong> Temporarily stored in
+                            memory (in-memory map), automatically cleared when
+                            browser tab closes
+                        </li>
+                        <li>
+                            <strong>Encryption:</strong> Tokens are
+                            <strong>never</strong> persisted to disk
+                        </li>
+                        <li>
+                            <strong>Transmission:</strong> Sent securely to
+                            Tether's internal API endpoints via HTTPS
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>User Context Information</strong>
+                    <ul>
+                        <li>Service ID (e.g., "rpd-mineduc")</li>
+                        <li>Campus ID (internal identifier)</li>
+                        <li>Tenant Code (institution identifier)</li>
+                        <li>Metadata (non-sensitive configuration data)</li>
+                        <li>
+                            <strong>Purpose:</strong> Required to route captured
+                            tokens to the correct campus/tenant
+                        </li>
+                        <li>
+                            <strong>Storage:</strong> Encrypted locally using
+                            AES-256-GCM
+                        </li>
+                        <li>
+                            <strong>Retention:</strong> Stored until manually
+                            cleared or extension is uninstalled
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Capture State</strong>
+                    <ul>
+                        <li>
+                            Current capture phase (initializing,
+                            waiting-credentials, waiting-token, completed)
+                        </li>
+                        <li>Site identifier (e.g., "rpd-mineduc")</li>
+                        <li>Timestamp</li>
+                        <li>
+                            <strong>Purpose:</strong> Tracks the status of
+                            ongoing capture operations
+                        </li>
+                        <li>
+                            <strong>Storage:</strong> Session storage and
+                            in-memory (5-minute TTL)
+                        </li>
+                        <li>
+                            <strong>Transmission:</strong> None (local only)
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Technical Data</strong>
+                    <ul>
+                        <li>Browser type and version</li>
+                        <li>Extension version</li>
+                        <li>
+                            <strong>Purpose:</strong> Debugging and
+                            compatibility checks
+                        </li>
+                        <li>
+                            <strong>Storage:</strong> Logs only (not
+                            transmitted)
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3>What We Do NOT Collect</h3>
+            <ul>
+                <li>
+                    <span class="cross-mark">❌</span> Passwords or login
+                    credentials
+                </li>
+                <li>
+                    <span class="cross-mark">❌</span> Personal information
+                    (names, emails, addresses)
+                </li>
+                <li><span class="cross-mark">❌</span> Browsing history</li>
+                <li>
+                    <span class="cross-mark">❌</span> Cookies from unrelated
+                    websites
+                </li>
+                <li>
+                    <span class="cross-mark">❌</span> Financial information
+                </li>
+                <li>
+                    <span class="cross-mark">❌</span> Any data from websites
+                    outside the declared host permissions
+                </li>
+            </ul>
+
+            <h2>How We Use Your Data</h2>
+            <p>
+                All collected data is used <strong>exclusively</strong> for the
+                following purposes:
+            </p>
+            <ol>
+                <li>
+                    <strong>Service Integration</strong>: Enable automated
+                    capture and provisioning of educational service tokens
+                </li>
+                <li>
+                    <strong>Internal Operations</strong>: Route captured tokens
+                    to Tether's internal CRM systems
+                </li>
+                <li>
+                    <strong>Debugging</strong>: Troubleshoot integration issues
+                    (logs are stored locally only)
+                </li>
+                <li>
+                    <strong>Security</strong>: Ensure secure token handling and
+                    prevent unauthorized access
+                </li>
+            </ol>
+
+            <p><strong>We do NOT:</strong></p>
+            <ul>
+                <li>Sell or share data with third parties</li>
+                <li>Use data for advertising or marketing</li>
+                <li>Track user behavior outside of capture workflows</li>
+                <li>Store data longer than necessary</li>
+            </ul>
+
+            <h2>Data Sharing</h2>
+            <p>
+                <strong>No data is shared with external third parties.</strong>
+                All data flows between:
+            </p>
+            <ol>
+                <li>The extension (your browser)</li>
+                <li>
+                    Tether's internal microservices:
+                    <ul>
+                        <li>
+                            Credential Manager API
+                            (<code>https://api.v2.tether.education/crm-integrations/credentials</code>)
+                        </li>
+                        <li>
+                            Integration Core API
+                            (<code>https://api.v2.tether.education/crm-integrations/core</code>)
+                        </li>
+                        <li>
+                            Campus Integration Web App
+                            (<code>https://app.tether.education/crm/campus-integration</code>)
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <p>
+                All communication uses <strong>HTTPS</strong> with TLS 1.2+
+                encryption.
+            </p>
+
+            <h2>Permissions Justification</h2>
+            <p>
+                The extension requests the following browser permissions. Each
+                permission is strictly necessary for the stated purpose:
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Permission</th>
+                        <th>Purpose</th>
+                        <th>Justification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>storage</code></td>
+                        <td>Store encrypted user context and capture state</td>
+                        <td>
+                            Required to persist configuration across browser
+                            sessions. Uses <code>chrome.storage.local</code> and
+                            <code>chrome.storage.session</code>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>notifications</code></td>
+                        <td>Display success/error notifications</td>
+                        <td>
+                            Alerts users when token capture succeeds or fails.
+                            Uses <code>chrome.notifications.create()</code>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>tabs</code></td>
+                        <td>Manage capture tabs and send messages</td>
+                        <td>
+                            Required to open educational service sites, detect
+                            URLs, and communicate with content scripts. Uses
+                            <code>chrome.tabs.query()</code>,
+                            <code>chrome.tabs.create()</code>,
+                            <code>chrome.tabs.sendMessage()</code>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>cookies</code></td>
+                        <td>Read cookies for token capture</td>
+                        <td>
+                            Some educational services store tokens in cookies.
+                            Used only on declared host permissions. Uses
+                            <code>document.cookie</code> API.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>scripting</code></td>
+                        <td>Inject content scripts dynamically</td>
+                        <td>
+                            Required to inject token interceptors on educational
+                            service pages. Uses
+                            <code>chrome.scripting.executeScript()</code> and
+                            <code
+                                >chrome.scripting.registerContentScripts()</code
+                            >.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Host Permissions</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Host</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <code
+                                >https://registropublicodigital.mineduc.gob.cl/*</code
+                            >
+                        </td>
+                        <td>
+                            Capture tokens from RPD MINEDUC (Chilean government
+                            educational service)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>https://apirpd.mineduc.cl/*</code></td>
+                        <td>Access RPD API endpoints</td>
+                    </tr>
+                    <tr>
+                        <td><code>https://app.tether.education/*</code></td>
+                        <td>
+                            Communicate with Campus Integration webapp (Tether's
+                            internal application)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Removed Permissions</h3>
+            <p>
+                As of version 1.0.0, the following permissions were
+                <strong>removed</strong> to comply with the principle of least
+                privilege:
+            </p>
+            <ul>
+                <li>
+                    <span class="cross-mark">❌</span> <code>alarms</code> (not
+                    used)
+                </li>
+                <li>
+                    <span class="cross-mark">❌</span>
+                    <code>activeTab</code> (not used)
+                </li>
+            </ul>
+
+            <h2>Security Measures</h2>
+            <p>We implement industry-standard security practices:</p>
+            <ol>
+                <li>
+                    <strong>Encryption</strong>
+                    <ul>
+                        <li>
+                            All stored credentials use
+                            <strong>AES-256-GCM</strong> encryption
+                        </li>
+                        <li>
+                            Unique Initialization Vector (IV) per encryption
+                            operation
+                        </li>
+                        <li>Key derivation via PBKDF2 (100,000 iterations)</li>
+                        <li>Extension ID used as key material</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>In-Memory Token Storage (Keycloak-style)</strong>
+                    <ul>
+                        <li>
+                            Authentication tokens stored
+                            <strong>only in memory</strong>
+                            (<code>authTokenMap</code>)
+                        </li>
+                        <li>Automatically cleared when browser tab closes</li>
+                        <li>
+                            <strong>Never</strong> persisted to disk or
+                            localStorage
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Origin Validation</strong>
+                    <ul>
+                        <li>
+                            Content scripts only run on explicitly declared host
+                            permissions
+                        </li>
+                        <li>
+                            <code>window.postMessage</code> communication
+                            validates origin via manifest
+                        </li>
+                        <li>
+                            No cross-origin requests outside declared
+                            permissions
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>HTTPS Only</strong>
+                    <ul>
+                        <li>All API communication uses HTTPS (TLS 1.2+)</li>
+                        <li>No unencrypted data transmission</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Code Minification</strong>
+                    <ul>
+                        <li>
+                            Production builds are minified to prevent reverse
+                            engineering
+                        </li>
+                        <li>Source maps only included in development builds</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h2>Data Retention</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Retention Period</th>
+                        <th>Deletion Method</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Authentication Tokens</td>
+                        <td>Until browser tab closes</td>
+                        <td>Automatic (in-memory only)</td>
+                    </tr>
+                    <tr>
+                        <td>User Context</td>
+                        <td>
+                            Until extension is uninstalled or manually cleared
+                        </td>
+                        <td>User-initiated or uninstall</td>
+                    </tr>
+                    <tr>
+                        <td>Capture State</td>
+                        <td>5 minutes (TTL)</td>
+                        <td>Automatic expiration</td>
+                    </tr>
+                    <tr>
+                        <td>Logs</td>
+                        <td>Until browser restart</td>
+                        <td>Automatic (console logs only)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Your Rights</h2>
+            <p>As a user of this internal extension, you have the right to:</p>
+            <ol>
+                <li>
+                    <strong>Access</strong>: View all data stored by the
+                    extension (via browser DevTools → Application → Storage)
+                </li>
+                <li>
+                    <strong>Deletion</strong>: Clear all stored data by
+                    uninstalling the extension
+                </li>
+                <li>
+                    <strong>Transparency</strong>: Request information about how
+                    your data is used (contact us below)
+                </li>
+            </ol>
+            <p>
+                To exercise these rights, contact the CRM development team at
+                the email below.
+            </p>
+
+            <h2>Children's Privacy</h2>
+            <p>
+                This extension is intended for
+                <strong>internal enterprise use only</strong> by authorized
+                employees of Tether Education. It is not directed at children
+                under 13 years of age, and we do not knowingly collect data from
+                children.
+            </p>
+
+            <h2>Changes to This Policy</h2>
+            <p>
+                We may update this Privacy Policy periodically. Changes will be
+                reflected in:
+            </p>
+            <ul>
+                <li>The "Last Updated" date at the top of this document</li>
+                <li>
+                    A notification to users upon extension update (if changes
+                    are material)
+                </li>
+            </ul>
+
+            <h2>Demo Mode</h2>
+            <p>
+                This extension includes a <strong>Demo Mode</strong> for Chrome
+                Web Store reviewers. When demo mode is enabled:
+            </p>
+            <ul>
+                <li>
+                    <strong>No real data is collected</strong> (all data is
+                    simulated)
+                </li>
+                <li>
+                    <strong>No network requests are made</strong> (fully
+                    offline)
+                </li>
+                <li>
+                    <strong>No permissions are exercised</strong> (except
+                    display)
+                </li>
+            </ul>
+            <p>
+                Demo mode is
+                <strong
+                    >only available in builds submitted to the Chrome Web
+                    Store</strong
+                >
+                and is not present in production builds distributed to Tether
+                employees.
+            </p>
+
+            <h2>Compliance</h2>
+            <p>This extension complies with:</p>
+            <ul>
+                <li>Chrome Web Store Developer Program Policies</li>
+                <li>Google API Services User Data Policy</li>
+                <li>OWASP Top 10 security guidelines</li>
+                <li>
+                    General Data Protection Regulation (GDPR) principles (even
+                    though internal-use only)
+                </li>
+            </ul>
+
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <p><strong>Tether Education - CRM Development Team</strong></p>
+                <p><strong>Email:</strong> crm-dev@tether.education</p>
+                <p>
+                    <strong>Website:</strong>
+                    <a href="https://tether.education" target="_blank"
+                        >https://tether.education</a
+                    >
+                </p>
+            </div>
+
+            <div class="footer">
+                <p><strong>Effective Date:</strong> January 11, 2025</p>
+                <p>
+                    <strong>Applicable to:</strong> Campus Assistant Extension
+                    v1.0.0 and above
+                </p>
+                <p>&copy; 2025 Tether Education. All rights reserved.</p>
+            </div>
+        </div>
+    </body>
+</html>
