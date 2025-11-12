@@ -456,15 +456,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><code>cookies</code></td>
-                        <td>Read cookies for token capture</td>
-                        <td>
-                            Some educational services store tokens in cookies.
-                            Used only on declared host permissions. Uses
-                            <code>document.cookie</code> API.
-                        </td>
-                    </tr>
-                    <tr>
                         <td><code>scripting</code></td>
                         <td>Inject content scripts dynamically</td>
                         <td>
@@ -527,6 +518,11 @@
                 <li>
                     <span class="cross-mark">❌</span>
                     <code>activeTab</code> (not used)
+                </li>
+                <li>
+                    <span class="cross-mark">❌</span> <code>cookies</code> (not
+                    used - extension uses <code>document.cookie</code> API which
+                    does not require permissions)
                 </li>
             </ul>
 
