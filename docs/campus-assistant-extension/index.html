@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Privacy Policy - Campus Assistant Extension</title>
+        <title>Privacy Policy - Tether: Campus Assistant</title>
         <style>
             * {
                 margin: 0;
@@ -184,213 +184,266 @@
     </head>
     <body>
         <div class="container">
-            <h1>Privacy Policy - Campus Assistant Extension</h1>
+            <h1>Privacy Policy - Tether: Campus Assistant</h1>
 
             <div class="metadata">
-                <p><strong>Last Updated:</strong> January 11, 2025</p>
-                <p><strong>Version:</strong> 1.0.0</p>
+                <p><strong>Last Updated:</strong> November 10, 2026</p>
+                <p><strong>Version:</strong> 1.1.0</p>
             </div>
 
             <h2>Overview</h2>
             <p>
-                Campus Assistant is an
-                <strong>internal browser extension</strong> developed by Tether
-                Education for the CRM team. This extension is designed to
-                facilitate secure integration between educational services and
-                Tether's internal CRM platform.
+                Tether: Campus Assistant is a browser extension developed by
+                Tether Education. It lets staff of schools and school networks
+                that use Tether's CRM or Tether's network dashboard sync a
+                school's session on
+                <strong>Anótate en la Lista</strong>, the Chilean Ministry of
+                Education's public waiting-list registry (Registro Público
+                Digital), with Tether, so that Tether can keep the school's
+                waiting lists up to date.
             </p>
 
             <div class="important-note">
                 <p>
-                    <strong>Important:</strong> This is an
-                    <strong>internal tool</strong> for authorized Tether
-                    Education employees only. It is not intended for public use
-                    and is only available in the Chrome Web Store for
-                    distribution purposes.
+                    <strong>Important:</strong> The extension works only
+                    together with Tether's web applications, for people who
+                    have a Tether account with access to the school. Without
+                    one, it does nothing. It is distributed through the Chrome
+                    Web Store.
                 </p>
             </div>
 
-            <h2>Purpose</h2>
+            <h2>What the Extension Does</h2>
+            <p>A sync goes through these steps:</p>
+            <ol>
+                <li>
+                    In Tether (the CRM, or the network dashboard), you click
+                    "Sincronizar" for a school on the Anótate en la Lista
+                    integration page.
+                </li>
+                <li>
+                    The extension opens the registry's sign-in page in a new
+                    tab and types in the school's username and password, which
+                    are already saved in Tether.
+                </li>
+                <li>You solve the captcha and sign in.</li>
+                <li>
+                    The extension reads the session the registry gives you,
+                    asks the registry which schools that account covers, hands
+                    the session to Tether for those schools, closes the tab and
+                    tells the Tether page that the sync is done.
+                </li>
+            </ol>
             <p>
-                Campus Assistant automates the following workflows for
-                authorized CRM team members:
+                The extension captures a session only when you ask it to,
+                normally by starting a sync from Tether. If you open the
+                registry on your own, it shows a notice and captures nothing.
             </p>
+
+            <h2>Data the Extension Handles</h2>
+
+            <h3>What It Handles</h3>
             <ul>
                 <li>
-                    <strong>Token Capture</strong>: Securely captures
-                    authentication tokens (JWT) from educational service
-                    providers (e.g., RPD MINEDUC, SIGES, EduFácil)
+                    <strong>The school's sign-in details for the registry</strong>
+                    (username and password)
+                    <ul>
+                        <li>
+                            <strong>Source:</strong> Tether's credential
+                            service, where the school's staff saved them. The
+                            extension requests them with your own Tether
+                            access, for the school you chose.
+                        </li>
+                        <li>
+                            <strong>Use:</strong> Typed into the registry's
+                            sign-in form, so you do not have to.
+                        </li>
+                        <li>
+                            <strong>Storage:</strong> Held in the sign-in tab's
+                            memory during the sync.
+                            <strong>Never written to the browser's storage</strong>,
+                            and not sent anywhere else.
+                        </li>
+                    </ul>
                 </li>
                 <li>
-                    <strong>Credential Management</strong>: Manages credentials
-                    for educational platforms
+                    <strong>The registry session</strong> (a session token)
+                    <ul>
+                        <li>
+                            <strong>Source:</strong> The registry's answer to
+                            your sign-in.
+                        </li>
+                        <li>
+                            <strong>Use:</strong> Used once to ask the
+                            registry's API which schools (RBD codes) the
+                            account covers, then sent to Tether's services with
+                            those school codes.
+                        </li>
+                        <li>
+                            <strong>Storage:</strong> Held in memory only.
+                            <strong>Never written to the browser's storage</strong>.
+                        </li>
+                        <li>
+                            <strong>Transmission:</strong> To Tether's API
+                            endpoints, over HTTPS.
+                        </li>
+                    </ul>
                 </li>
                 <li>
-                    <strong>Bidirectional Communication</strong>: Facilitates
-                    secure messaging between the extension and Tether's Campus
-                    Integration web application
+                    <strong>Your Tether access token</strong>
+                    <ul>
+                        <li>
+                            <strong>Source:</strong> The Tether page hands it
+                            to the extension when you start a sync.
+                        </li>
+                        <li>
+                            <strong>Use:</strong> Authorizes the extension's
+                            requests to Tether's services as you, so Tether's
+                            own permissions decide what you may do.
+                        </li>
+                        <li>
+                            <strong>Storage:</strong> Held in the extension's
+                            memory, tied to the sign-in tab, and discarded when
+                            that tab closes.
+                            <strong>Never written to the browser's storage</strong>.
+                        </li>
+                    </ul>
                 </li>
                 <li>
-                    <strong>Bulk Provisioning</strong>: Enables provisioning of
-                    captured tokens across multiple campuses
+                    <strong>Sync context</strong>
+                    <ul>
+                        <li>Service identifier (the registry)</li>
+                        <li>School (campus) identifier and tenant code</li>
+                        <li>
+                            The sign-in page's address, related settings and
+                            the time of the sync
+                        </li>
+                        <li>
+                            <strong>Purpose:</strong> Tells the script on the
+                            sign-in tab which sync it belongs to, and routes
+                            the session to the right school.
+                        </li>
+                        <li>
+                            <strong>Storage:</strong> In the browser's
+                            extension storage: the sync in progress in session
+                            storage, removed when it is read; and a record of
+                            the last sync's context in local storage, replaced
+                            by the next sync and removed once it is 30 minutes
+                            old the next time the extension reads it. It is not
+                            encrypted and holds no password and no token.
+                        </li>
+                        <li><strong>Transmission:</strong> None beyond the identifiers sent with the session.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Capture state</strong>
+                    <ul>
+                        <li>
+                            The phase of the sync in progress, the site and a
+                            timestamp
+                        </li>
+                        <li>
+                            <strong>Storage:</strong> In memory only, until the
+                            sign-in tab closes.
+                        </li>
+                        <li><strong>Transmission:</strong> None (local only)</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Diagnostic messages</strong>
+                    <ul>
+                        <li>
+                            The extension writes messages about its own
+                            operation to the browser's console.
+                        </li>
+                        <li><strong>Transmission:</strong> None (local only)</li>
+                    </ul>
                 </li>
             </ul>
 
-            <h2>Data Collection</h2>
-
-            <h3>What Data We Collect</h3>
-            <p>
-                The extension collects and processes the following data types:
-            </p>
-
-            <ol>
-                <li>
-                    <strong>Authentication Tokens (JWT)</strong>
-                    <ul>
-                        <li>
-                            <strong>Purpose:</strong> Captured from educational
-                            services to enable automated integrations
-                        </li>
-                        <li>
-                            <strong>Storage:</strong> Temporarily stored in
-                            memory (in-memory map), automatically cleared when
-                            browser tab closes
-                        </li>
-                        <li>
-                            <strong>Encryption:</strong> Tokens are
-                            <strong>never</strong> persisted to disk
-                        </li>
-                        <li>
-                            <strong>Transmission:</strong> Sent securely to
-                            Tether's internal API endpoints via HTTPS
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>User Context Information</strong>
-                    <ul>
-                        <li>Service ID (e.g., "rpd-mineduc")</li>
-                        <li>Campus ID (internal identifier)</li>
-                        <li>Tenant Code (institution identifier)</li>
-                        <li>Metadata (non-sensitive configuration data)</li>
-                        <li>
-                            <strong>Purpose:</strong> Required to route captured
-                            tokens to the correct campus/tenant
-                        </li>
-                        <li>
-                            <strong>Storage:</strong> Encrypted locally using
-                            AES-256-GCM
-                        </li>
-                        <li>
-                            <strong>Retention:</strong> Stored until manually
-                            cleared or extension is uninstalled
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>Capture State</strong>
-                    <ul>
-                        <li>
-                            Current capture phase (initializing,
-                            waiting-credentials, waiting-token, completed)
-                        </li>
-                        <li>Site identifier (e.g., "rpd-mineduc")</li>
-                        <li>Timestamp</li>
-                        <li>
-                            <strong>Purpose:</strong> Tracks the status of
-                            ongoing capture operations
-                        </li>
-                        <li>
-                            <strong>Storage:</strong> Session storage and
-                            in-memory (5-minute TTL)
-                        </li>
-                        <li>
-                            <strong>Transmission:</strong> None (local only)
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>Technical Data</strong>
-                    <ul>
-                        <li>Browser type and version</li>
-                        <li>Extension version</li>
-                        <li>
-                            <strong>Purpose:</strong> Debugging and
-                            compatibility checks
-                        </li>
-                        <li>
-                            <strong>Storage:</strong> Logs only (not
-                            transmitted)
-                        </li>
-                    </ul>
-                </li>
-            </ol>
-
-            <h3>What We Do NOT Collect</h3>
+            <h3>What It Does NOT Collect</h3>
             <ul>
                 <li>
-                    <span class="cross-mark">❌</span> Passwords or login
-                    credentials
+                    <span class="cross-mark">❌</span> Your own passwords. The
+                    only login it handles is the school's registry login
+                    described above.
                 </li>
                 <li>
                     <span class="cross-mark">❌</span> Personal information
                     (names, emails, addresses)
                 </li>
+                <li>
+                    <span class="cross-mark">❌</span> Waiting lists,
+                    applications or any applicant's or student's data
+                </li>
                 <li><span class="cross-mark">❌</span> Browsing history</li>
                 <li>
-                    <span class="cross-mark">❌</span> Cookies from unrelated
-                    websites
+                    <span class="cross-mark">❌</span> Cookies or content from
+                    other websites
                 </li>
-                <li>
-                    <span class="cross-mark">❌</span> Financial information
-                </li>
+                <li><span class="cross-mark">❌</span> Financial information</li>
                 <li>
                     <span class="cross-mark">❌</span> Any data from websites
-                    outside the declared host permissions
+                    outside the sites listed under Permissions
                 </li>
             </ul>
 
+            <h3>What Tether Does With the Session</h3>
+            <p>
+                Once the extension has handed the session over, Tether's
+                services use it to read the school's waiting lists on Anótate
+                en la Lista. Those lists include applicants' names and identity
+                numbers (RUN). That reading is done by Tether's services for
+                the school, not by this extension, and is not governed by this
+                policy.
+            </p>
+
             <h2>How We Use Your Data</h2>
             <p>
-                All collected data is used <strong>exclusively</strong> for the
-                following purposes:
+                The data above is used <strong>exclusively</strong> to carry
+                out the sync you started:
             </p>
             <ol>
                 <li>
-                    <strong>Service Integration</strong>: Enable automated
-                    capture and provisioning of educational service tokens
+                    <strong>Sign-in:</strong> Fill in the school's registry
+                    login for you
                 </li>
                 <li>
-                    <strong>Internal Operations</strong>: Route captured tokens
-                    to Tether's internal CRM systems
+                    <strong>Hand-over:</strong> Deliver the resulting session
+                    to Tether for the schools the account covers
                 </li>
                 <li>
-                    <strong>Debugging</strong>: Troubleshoot integration issues
-                    (logs are stored locally only)
-                </li>
-                <li>
-                    <strong>Security</strong>: Ensure secure token handling and
-                    prevent unauthorized access
+                    <strong>Status:</strong> Tell the Tether page and you
+                    whether the sync finished
                 </li>
             </ol>
-
             <p><strong>We do NOT:</strong></p>
             <ul>
                 <li>Sell or share data with third parties</li>
                 <li>Use data for advertising or marketing</li>
-                <li>Track user behavior outside of capture workflows</li>
-                <li>Store data longer than necessary</li>
+                <li>Track your activity outside a sync</li>
+                <li>Keep data in the extension longer than a sync needs</li>
             </ul>
 
             <h2>Data Sharing</h2>
             <p>
-                <strong>No data is shared with external third parties.</strong>
-                All data flows between:
+                <strong>No data is shared with third parties.</strong> Data
+                flows only between:
             </p>
-            <ol>
+            <ul>
                 <li>The extension (your browser)</li>
                 <li>
-                    Tether's internal microservices:
+                    The registry itself, where you sign in, and its API, asked
+                    once per sync which schools the account covers:
+                    <ul>
+                        <li>
+                            <code>https://registropublicodigital.mineduc.gob.cl</code>
+                        </li>
+                        <li><code>https://apirpd.mineduc.cl</code></li>
+                    </ul>
+                </li>
+                <li>
+                    Tether's services:
                     <ul>
                         <li>
                             Credential Manager API
@@ -400,22 +453,31 @@
                             Integration Core API
                             (<code>https://api.v2.tether.education/crm-integrations/core</code>)
                         </li>
+                    </ul>
+                </li>
+                <li>
+                    The Tether page where you started the sync, by messages
+                    inside that page:
+                    <ul>
                         <li>
-                            Campus Integration Web App
+                            Tether's CRM
                             (<code>https://app.tether.education/crm/campus-integration</code>)
+                        </li>
+                        <li>
+                            Tether's network dashboard
+                            (<code>https://redes.tether.education</code>)
                         </li>
                     </ul>
                 </li>
-            </ol>
+            </ul>
             <p>
-                All communication uses <strong>HTTPS</strong> with TLS 1.2+
-                encryption.
+                All communication uses <strong>HTTPS</strong>.
             </p>
 
             <h2>Permissions Justification</h2>
             <p>
                 The extension requests the following browser permissions. Each
-                permission is strictly necessary for the stated purpose:
+                is needed for the sync described above:
             </p>
 
             <table>
@@ -429,171 +491,145 @@
                 <tbody>
                     <tr>
                         <td><code>storage</code></td>
-                        <td>Store encrypted user context and capture state</td>
+                        <td>Keep the context of a sync</td>
                         <td>
-                            Required to persist configuration across browser
-                            sessions. Uses <code>chrome.storage.local</code> and
+                            Tells the script on the sign-in tab which sync it
+                            belongs to. Holds no password and no token. Uses
+                            <code>chrome.storage.local</code> and
                             <code>chrome.storage.session</code>.
                         </td>
                     </tr>
                     <tr>
                         <td><code>notifications</code></td>
-                        <td>Display success/error notifications</td>
+                        <td>Show how a sync went</td>
                         <td>
-                            Alerts users when token capture succeeds or fails.
-                            Uses <code>chrome.notifications.create()</code>.
+                            Displays desktop notifications about a sync, such
+                            as when a session has been captured and handed to
+                            Tether.
                         </td>
                     </tr>
                     <tr>
                         <td><code>tabs</code></td>
-                        <td>Manage capture tabs and send messages</td>
+                        <td>Open and close the sign-in tab</td>
                         <td>
-                            Required to open educational service sites, detect
-                            URLs, and communicate with content scripts. Uses
-                            <code>chrome.tabs.query()</code>,
-                            <code>chrome.tabs.create()</code>,
-                            <code>chrome.tabs.sendMessage()</code>.
+                            Opens the registry's sign-in page next to the
+                            Tether page, closes it when the sync finishes,
+                            sends the result to the Tether tab that started it,
+                            and discards the in-memory token when the sign-in
+                            tab closes.
                         </td>
                     </tr>
                     <tr>
                         <td><code>scripting</code></td>
-                        <td>Inject content scripts dynamically</td>
+                        <td>Run the sync's scripts</td>
                         <td>
-                            Required to inject token interceptors on educational
-                            service pages. Uses
-                            <code>chrome.scripting.executeScript()</code> and
-                            <code
-                                >chrome.scripting.registerContentScripts()</code
-                            >.
+                            Registers the capture script on the registry's
+                            site, puts the messaging script into Tether CRM
+                            pages that were already open when the extension was
+                            installed or updated, and reads the sync's progress
+                            to show it in the popup.
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <h3>Host Permissions</h3>
+            <h3>Sites</h3>
             <table>
                 <thead>
                     <tr>
-                        <th>Host</th>
+                        <th>Site</th>
                         <th>Purpose</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
-                            <code
-                                >https://registropublicodigital.mineduc.gob.cl/*</code
-                            >
+                            <code>https://registropublicodigital.mineduc.gob.cl/*</code>
                         </td>
                         <td>
-                            Capture tokens from RPD MINEDUC (Chilean government
-                            educational service)
+                            The registry's site: fill in the school's login and
+                            read the session after you sign in
                         </td>
                     </tr>
                     <tr>
                         <td><code>https://apirpd.mineduc.cl/*</code></td>
-                        <td>Access RPD API endpoints</td>
+                        <td>
+                            The registry's API: ask which schools the account
+                            covers
+                        </td>
                     </tr>
                     <tr>
                         <td><code>https://app.tether.education/*</code></td>
                         <td>
-                            Communicate with Campus Integration webapp (Tether's
-                            internal application)
+                            Tether's CRM: receive the request to sync and
+                            report its result
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>https://app.dev.tether.education/*</code></td>
+                        <td>Tether's test environment for the CRM</td>
+                    </tr>
+                    <tr>
+                        <td><code>https://redes.tether.education/*</code></td>
+                        <td>
+                            Tether's network dashboard: receive the request to
+                            sync and report its result (a messaging script
+                            only)
                         </td>
                     </tr>
                 </tbody>
             </table>
-
-            <h3>Removed Permissions</h3>
             <p>
-                As of version 1.0.0, the following permissions were
-                <strong>removed</strong> to comply with the principle of least
-                privilege:
+                The extension does not request the <code>alarms</code>,
+                <code>activeTab</code> or <code>cookies</code> permissions.
             </p>
-            <ul>
-                <li>
-                    <span class="cross-mark">❌</span> <code>alarms</code> (not
-                    used)
-                </li>
-                <li>
-                    <span class="cross-mark">❌</span>
-                    <code>activeTab</code> (not used)
-                </li>
-                <li>
-                    <span class="cross-mark">❌</span> <code>cookies</code> (not
-                    used - extension uses <code>document.cookie</code> API which
-                    does not require permissions)
-                </li>
-            </ul>
 
             <h2>Security Measures</h2>
-            <p>We implement industry-standard security practices:</p>
-            <ol>
+            <ul>
                 <li>
-                    <strong>Encryption</strong>
+                    <strong>Nothing sensitive is stored</strong>
                     <ul>
                         <li>
-                            All stored credentials use
-                            <strong>AES-256-GCM</strong> encryption
+                            The school's login, the registry session and your
+                            Tether access token are held in memory only
                         </li>
                         <li>
-                            Unique Initialization Vector (IV) per encryption
-                            operation
-                        </li>
-                        <li>Key derivation via PBKDF2 (100,000 iterations)</li>
-                        <li>Extension ID used as key material</li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>In-Memory Token Storage (Keycloak-style)</strong>
-                    <ul>
-                        <li>
-                            Authentication tokens stored
-                            <strong>only in memory</strong>
-                            (<code>authTokenMap</code>)
-                        </li>
-                        <li>Automatically cleared when browser tab closes</li>
-                        <li>
-                            <strong>Never</strong> persisted to disk or
-                            localStorage
+                            They are never written to the browser's storage,
+                            and the tokens are discarded when the sign-in tab
+                            closes
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <strong>Origin Validation</strong>
+                    <strong>Limited to declared sites</strong>
                     <ul>
                         <li>
-                            Content scripts only run on explicitly declared host
-                            permissions
+                            The extension's scripts run only on the sites
+                            listed above
                         </li>
                         <li>
-                            <code>window.postMessage</code> communication
-                            validates origin via manifest
-                        </li>
-                        <li>
-                            No cross-origin requests outside declared
-                            permissions
+                            Messages from a page are accepted only from that
+                            page's own origin
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <strong>HTTPS Only</strong>
+                    <strong>Your own permissions apply</strong>
                     <ul>
-                        <li>All API communication uses HTTPS (TLS 1.2+)</li>
-                        <li>No unencrypted data transmission</li>
+                        <li>
+                            The extension calls Tether's services with your own
+                            access, so it can do only what your Tether account
+                            may do for that school
+                        </li>
                     </ul>
                 </li>
                 <li>
-                    <strong>Code Minification</strong>
+                    <strong>HTTPS only</strong>
                     <ul>
-                        <li>
-                            Production builds are minified to prevent reverse
-                            engineering
-                        </li>
-                        <li>Source maps only included in development builds</li>
+                        <li>All communication uses HTTPS</li>
                     </ul>
                 </li>
-            </ol>
+            </ul>
 
             <h2>Data Retention</h2>
             <table>
@@ -606,58 +642,58 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Authentication Tokens</td>
-                        <td>Until browser tab closes</td>
-                        <td>Automatic (in-memory only)</td>
+                        <td>School's registry login</td>
+                        <td>The duration of the sync</td>
+                        <td>Automatic (in memory only)</td>
                     </tr>
                     <tr>
-                        <td>User Context</td>
+                        <td>Registry session and Tether access token</td>
+                        <td>Until the sign-in tab closes</td>
+                        <td>Automatic (in memory only)</td>
+                    </tr>
+                    <tr>
+                        <td>Sync context</td>
                         <td>
-                            Until extension is uninstalled or manually cleared
+                            Until the next sync, or 30 minutes and the next
+                            read, or until the extension is uninstalled
                         </td>
-                        <td>User-initiated or uninstall</td>
+                        <td>Automatic, or by uninstalling</td>
                     </tr>
                     <tr>
-                        <td>Capture State</td>
-                        <td>5 minutes (TTL)</td>
-                        <td>Automatic expiration</td>
+                        <td>Capture state</td>
+                        <td>Until the sign-in tab closes</td>
+                        <td>Automatic (in memory only)</td>
                     </tr>
                     <tr>
-                        <td>Logs</td>
-                        <td>Until browser restart</td>
-                        <td>Automatic (console logs only)</td>
+                        <td>Diagnostic messages</td>
+                        <td>Until the page or the browser closes</td>
+                        <td>Automatic (browser console only)</td>
                     </tr>
                 </tbody>
             </table>
 
             <h2>Your Rights</h2>
-            <p>As a user of this internal extension, you have the right to:</p>
-            <ol>
+            <p>As a user of this extension, you have the right to:</p>
+            <ul>
                 <li>
-                    <strong>Access</strong>: View all data stored by the
+                    <strong>Access:</strong> View all data stored by the
                     extension (via browser DevTools → Application → Storage)
                 </li>
                 <li>
-                    <strong>Deletion</strong>: Clear all stored data by
+                    <strong>Deletion:</strong> Clear all stored data by
                     uninstalling the extension
                 </li>
                 <li>
-                    <strong>Transparency</strong>: Request information about how
-                    your data is used (contact us below)
+                    <strong>Transparency:</strong> Request information about
+                    how your data is used (contact us below)
                 </li>
-            </ol>
-            <p>
-                To exercise these rights, contact the CRM development team at
-                the email below.
-            </p>
+            </ul>
 
             <h2>Children's Privacy</h2>
             <p>
-                This extension is intended for
-                <strong>internal enterprise use only</strong> by authorized
-                employees of Tether Education. It is not directed at children
-                under 13 years of age, and we do not knowingly collect data from
-                children.
+                This extension is for the staff of schools and school networks.
+                It is not directed at children under 13 years of age, and it
+                does not collect data from children.
             </p>
 
             <h2>Changes to This Policy</h2>
@@ -673,45 +709,13 @@
                 </li>
             </ul>
 
-            <h2>Demo Mode</h2>
-            <p>
-                This extension includes a <strong>Demo Mode</strong> for Chrome
-                Web Store reviewers. When demo mode is enabled:
-            </p>
-            <ul>
-                <li>
-                    <strong>No real data is collected</strong> (all data is
-                    simulated)
-                </li>
-                <li>
-                    <strong>No network requests are made</strong> (fully
-                    offline)
-                </li>
-                <li>
-                    <strong>No permissions are exercised</strong> (except
-                    display)
-                </li>
-            </ul>
-            <p>
-                Demo mode is
-                <strong
-                    >only available in builds submitted to the Chrome Web
-                    Store</strong
-                >
-                and is not present in production builds distributed to Tether
-                employees.
-            </p>
-
             <h2>Compliance</h2>
             <p>This extension complies with:</p>
             <ul>
                 <li>Chrome Web Store Developer Program Policies</li>
                 <li>Google API Services User Data Policy</li>
                 <li>OWASP Top 10 security guidelines</li>
-                <li>
-                    General Data Protection Regulation (GDPR) principles (even
-                    though internal-use only)
-                </li>
+                <li>General Data Protection Regulation (GDPR) principles</li>
             </ul>
 
             <h2>Contact Us</h2>
@@ -727,12 +731,12 @@
             </div>
 
             <div class="footer">
-                <p><strong>Effective Date:</strong> January 11, 2025</p>
+                <p><strong>Effective Date:</strong> November 10, 2026</p>
                 <p>
-                    <strong>Applicable to:</strong> Campus Assistant Extension
-                    v1.0.0 and above
+                    <strong>Applicable to:</strong> Tether: Campus Assistant
+                    v1.0.2 and above
                 </p>
-                <p>&copy; 2025 Tether Education. All rights reserved.</p>
+                <p>&copy; 2026 Tether Education. All rights reserved.</p>
             </div>
         </div>
     </body>
