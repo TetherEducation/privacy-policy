@@ -187,8 +187,8 @@
             <h1>Privacy Policy - Tether: Campus Assistant</h1>
 
             <div class="metadata">
-                <p><strong>Last Updated:</strong> November 10, 2026</p>
-                <p><strong>Version:</strong> 1.1.0</p>
+                <p><strong>Last Updated:</strong> November 23, 2026</p>
+                <p><strong>Version:</strong> 1.2.0</p>
             </div>
 
             <h2>Overview</h2>
@@ -200,7 +200,11 @@
                 <strong>Anótate en la Lista</strong>, the Chilean Ministry of
                 Education's public waiting-list registry (Registro Público
                 Digital), with Tether, so that Tether can keep the school's
-                waiting lists up to date.
+                waiting lists up to date. From version 1.1.0 it can also
+                <strong>export</strong> a school's waiting lists to Tether,
+                for schools that prefer not to give Tether their password:
+                the person signs in to the registry themselves, and Tether
+                receives only an encrypted copy of the lists.
             </p>
 
             <div class="important-note">
@@ -239,6 +243,41 @@
                 normally by starting a sync from Tether. If you open the
                 registry on your own, it shows a notice and captures nothing.
             </p>
+            <p>An export (since version 1.1.0) goes through these steps:</p>
+            <ol>
+                <li>
+                    In Tether's network dashboard, you click the export
+                    button for a school on the Anótate en la Lista
+                    integration page. Tether gives the page a signed,
+                    short-lived permission (a "grant") for that school.
+                </li>
+                <li>
+                    The extension checks that the grant was signed by
+                    Tether and opens the registry's sign-in page in a new
+                    tab with <strong>nothing filled in</strong>: you type
+                    the school's username and password and solve the
+                    captcha.
+                </li>
+                <li>
+                    In that tab, with the session the registry gives you,
+                    the extension reads the waiting lists of the schools
+                    the grant names and the account covers, one request at
+                    a time and read-only.
+                </li>
+                <li>
+                    It packs the lists into a file, encrypts the file in
+                    the tab with Tether's public key (RSA-OAEP with
+                    SHA-256 and AES-256-GCM), hands the encrypted file to
+                    the Tether page and closes the tab. The page sends the
+                    file to Tether or offers it to you as a download. Only
+                    Tether's services can open it.
+                </li>
+            </ol>
+            <p>
+                In an export the extension asks Tether for no password and
+                no access token, and the registry session never leaves the
+                sign-in tab.
+            </p>
 
             <h2>Data the Extension Handles</h2>
 
@@ -256,7 +295,9 @@
                         </li>
                         <li>
                             <strong>Use:</strong> Typed into the registry's
-                            sign-in form, so you do not have to.
+                            sign-in form, so you do not have to. Sync only:
+                            an export never receives it, because you type it
+                            yourself.
                         </li>
                         <li>
                             <strong>Storage:</strong> Held in the sign-in tab's
@@ -276,16 +317,20 @@
                         <li>
                             <strong>Use:</strong> Used once to ask the
                             registry's API which schools (RBD codes) the
-                            account covers, then sent to Tether's services with
-                            those school codes.
+                            account covers, then, in a sync, sent to Tether's services with
+                            those school codes. In an export it is used in
+                            the sign-in tab to read the school's waiting
+                            lists and is <strong>never sent to
+                            Tether</strong>.
                         </li>
                         <li>
                             <strong>Storage:</strong> Held in memory only.
                             <strong>Never written to the browser's storage</strong>.
                         </li>
                         <li>
-                            <strong>Transmission:</strong> To Tether's API
-                            endpoints, over HTTPS.
+                            <strong>Transmission:</strong> In a sync, to
+                            Tether's API endpoints, over HTTPS. In an export,
+                            only to the registry's API.
                         </li>
                     </ul>
                 </li>
@@ -294,7 +339,8 @@
                     <ul>
                         <li>
                             <strong>Source:</strong> The Tether page hands it
-                            to the extension when you start a sync.
+                            to the extension when you start a sync. An
+                            export does not use it.
                         </li>
                         <li>
                             <strong>Use:</strong> Authorizes the extension's
@@ -306,6 +352,62 @@
                             memory, tied to the sign-in tab, and discarded when
                             that tab closes.
                             <strong>Never written to the browser's storage</strong>.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>The school's waiting lists</strong> (export
+                    only, since version 1.1.0)
+                    <ul>
+                        <li>
+                            <strong>Source:</strong> The registry's API,
+                            read in the sign-in tab with the session you
+                            obtained by signing in.
+                        </li>
+                        <li>
+                            <strong>Content:</strong> The school's programs
+                            and the applications on each waiting list, as
+                            the registry returns them. They include
+                            applicants' and guardians' personal data, such
+                            as names and identity numbers (RUN).
+                        </li>
+                        <li>
+                            <strong>Use:</strong> Packed into one file and
+                            encrypted with Tether's public key, in the
+                            sign-in tab, so the school's lists reach Tether
+                            without the school's password.
+                        </li>
+                        <li>
+                            <strong>Storage:</strong> Held in the sign-in
+                            tab's memory until the encrypted file is handed
+                            over. <strong>Never written to the browser's
+                            storage</strong>.
+                        </li>
+                        <li>
+                            <strong>Transmission:</strong> Only the
+                            encrypted file, to the Tether page that asked
+                            for the export, which sends it to Tether's
+                            Integration Core over HTTPS or offers it to you
+                            as a download. The page can count what the file
+                            holds per school (programs and applications)
+                            but cannot read it.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Export permission (grant)</strong>
+                    <ul>
+                        <li>
+                            A permission signed by Tether naming the school,
+                            its RBD codes, the person, an expiry and
+                            Tether's public encryption key. It is not a
+                            secret.
+                        </li>
+                        <li>
+                            <strong>Storage:</strong> In the browser's
+                            extension session storage while the export
+                            runs, removed when it ends or the sign-in tab
+                            closes.
                         </li>
                     </ul>
                 </li>
@@ -370,11 +472,13 @@
                 </li>
                 <li>
                     <span class="cross-mark">❌</span> Personal information
-                    (names, emails, addresses)
+                    about you (names, emails, addresses)
                 </li>
                 <li>
                     <span class="cross-mark">❌</span> Waiting lists,
-                    applications or any applicant's or student's data
+                    applications or any applicant's or student's data,
+                    except in an export you start, as described above,
+                    which hands them to Tether only encrypted
                 </li>
                 <li><span class="cross-mark">❌</span> Browsing history</li>
                 <li>
@@ -388,14 +492,16 @@
                 </li>
             </ul>
 
-            <h3>What Tether Does With the Session</h3>
+            <h3>What Tether Does With the Session and the Export</h3>
             <p>
                 Once the extension has handed the session over, Tether's
                 services use it to read the school's waiting lists on Anótate
                 en la Lista. Those lists include applicants' names and identity
                 numbers (RUN). That reading is done by Tether's services for
                 the school, not by this extension, and is not governed by this
-                policy.
+                policy. Likewise, what Tether does with an export once it
+                has received it (opening it and loading the school's lists)
+                happens in Tether's services, not in this extension.
             </p>
 
             <h2>How We Use Your Data</h2>
@@ -413,8 +519,13 @@
                     to Tether for the schools the account covers
                 </li>
                 <li>
+                    <strong>Export:</strong> Read the school's waiting lists
+                    in the sign-in tab, encrypt them and hand the encrypted
+                    file to the Tether page
+                </li>
+                <li>
                     <strong>Status:</strong> Tell the Tether page and you
-                    whether the sync finished
+                    whether the sync or export finished
                 </li>
             </ol>
             <p><strong>We do NOT:</strong></p>
@@ -434,7 +545,8 @@
                 <li>The extension (your browser)</li>
                 <li>
                     The registry itself, where you sign in, and its API, asked
-                    once per sync which schools the account covers:
+                    which schools the account covers and, in an export, for
+                    those schools' waiting lists:
                     <ul>
                         <li>
                             <code>https://registropublicodigital.mineduc.gob.cl</code>
@@ -491,10 +603,10 @@
                 <tbody>
                     <tr>
                         <td><code>storage</code></td>
-                        <td>Keep the context of a sync</td>
+                        <td>Keep the context of a sync or export</td>
                         <td>
-                            Tells the script on the sign-in tab which sync it
-                            belongs to. Holds no password and no token. Uses
+                            Tells the script on the sign-in tab which sync or
+                        export it belongs to. Holds no password and no token. Uses
                             <code>chrome.storage.local</code> and
                             <code>chrome.storage.session</code>.
                         </td>
@@ -513,10 +625,10 @@
                         <td>Open and close the sign-in tab</td>
                         <td>
                             Opens the registry's sign-in page next to the
-                            Tether page, closes it when the sync finishes,
+                            Tether page, closes it when the sync or export finishes,
                             sends the result to the Tether tab that started it,
-                            and discards the in-memory token when the sign-in
-                            tab closes.
+                            and discards the in-memory token or the export in
+                        progress when the sign-in tab closes.
                         </td>
                     </tr>
                     <tr>
@@ -555,7 +667,7 @@
                         <td><code>https://apirpd.mineduc.cl/*</code></td>
                         <td>
                             The registry's API: ask which schools the account
-                            covers
+                        covers and, in an export, read their waiting lists
                         </td>
                     </tr>
                     <tr>
@@ -573,7 +685,7 @@
                         <td><code>https://redes.tether.education/*</code></td>
                         <td>
                             Tether's network dashboard: receive the request to
-                            sync and report its result (a messaging script
+                        sync or export and report its result (a messaging script
                             only)
                         </td>
                     </tr>
@@ -650,6 +762,16 @@
                         <td>Registry session and Tether access token</td>
                         <td>Until the sign-in tab closes</td>
                         <td>Automatic (in memory only)</td>
+                    </tr>
+                    <tr>
+                        <td>Waiting lists read in an export</td>
+                        <td>Until the encrypted file is handed to the Tether page</td>
+                        <td>Automatic (in memory only)</td>
+                    </tr>
+                    <tr>
+                        <td>Export permission (grant)</td>
+                        <td>Until the export ends or the sign-in tab closes</td>
+                        <td>Automatic (extension session storage)</td>
                     </tr>
                     <tr>
                         <td>Sync context</td>
@@ -731,7 +853,7 @@
             </div>
 
             <div class="footer">
-                <p><strong>Effective Date:</strong> November 10, 2026</p>
+                <p><strong>Effective Date:</strong> November 23, 2026</p>
                 <p>
                     <strong>Applicable to:</strong> Tether: Campus Assistant
                     v1.0.2 and above
